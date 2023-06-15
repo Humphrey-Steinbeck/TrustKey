@@ -1,0 +1,38 @@
+{
+  "name": "trustkey",
+  "version": "1.0.0",
+  "description": "Decentralized Identity and Reputation Credential System using Verifiable Credentials and Zero-Knowledge Proofs",
+  "main": "index.js",
+  "scripts": {
+    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "dev:backend": "cd backend && npm run dev",
+    "dev:frontend": "cd frontend && npm run dev",
+    "build": "npm run build:backend && npm run build:frontend",
+    "build:backend": "cd backend && npm run build",
+    "build:frontend": "cd frontend && npm run build",
+    "test": "npm run test:backend && npm run test:frontend",
+    "test:backend": "cd backend && npm test",
+    "test:frontend": "cd frontend && npm test",
+    "compile": "cd contracts && npx hardhat compile",
+    "deploy": "cd contracts && npx hardhat run scripts/deploy.js",
+    "verify": "cd contracts && npx hardhat verify"
+  },
+  "keywords": [
+    "blockchain",
+    "identity",
+    "verifiable-credentials",
+    "zero-knowledge-proofs",
+    "reputation",
+    "decentralized"
+  ],
+  "author": "TrustKey Team",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "workspaces": [
+    "backend",
+    "frontend",
+    "contracts"
+  ]
+}
