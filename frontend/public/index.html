@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#3B82F6" />
+    <meta name="description" content="TrustKey - Decentralized Identity and Reputation System" />
+    <meta name="keywords" content="blockchain, identity, reputation, verifiable credentials, zero-knowledge proofs" />
+    <meta name="author" content="TrustKey Team" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://trustkey.io/" />
+    <meta property="og:title" content="TrustKey - Decentralized Identity and Reputation System" />
+    <meta property="og:description" content="A comprehensive platform for managing decentralized identity, verifiable credentials, and reputation scores using blockchain technology and zero-knowledge proofs." />
+    <meta property="og:image" content="%PUBLIC_URL%/og-image.png" />
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://trustkey.io/" />
+    <meta property="twitter:title" content="TrustKey - Decentralized Identity and Reputation System" />
+    <meta property="twitter:description" content="A comprehensive platform for managing decentralized identity, verifiable credentials, and reputation scores using blockchain technology and zero-knowledge proofs." />
+    <meta property="twitter:image" content="%PUBLIC_URL%/og-image.png" />
+    
+    <!-- Apple Touch Icon -->
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    
+    <!-- Manifest -->
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    
+    <!-- Preconnect to external domains -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="%PUBLIC_URL%/favicon.svg" />
+    <link rel="icon" type="image/png" href="%PUBLIC_URL%/favicon.png" />
+    
+    <!-- Security Headers -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https: wss: ws:; frame-src 'none';" />
+    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+    <meta http-equiv="X-Frame-Options" content="DENY" />
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block" />
+    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin" />
+    
+    <!-- Performance -->
+    <link rel="dns-prefetch" href="//fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="//fonts.gstatic.com" />
+    
+    <title>TrustKey - Decentralized Identity and Reputation System</title>
+  </head>
+  <body>
+    <noscript>
+      <div style="text-align: center; padding: 2rem; font-family: system-ui, sans-serif;">
+        <h1>JavaScript Required</h1>
+        <p>TrustKey requires JavaScript to function properly. Please enable JavaScript in your browser and refresh the page.</p>
+        <p>If you continue to see this message, please check that JavaScript is enabled in your browser settings.</p>
+      </div>
+    </noscript>
+    
+    <!-- Loading fallback -->
+    <div id="loading-fallback" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #f9fafb; z-index: 9999;">
+      <div style="display: flex; align-items: center; justify-content: center; height: 100%; flex-direction: column;">
+        <div style="width: 40px; height: 40px; border: 4px solid #e5e7eb; border-top: 4px solid #3b82f6; border-radius: 50%; animation: spin 1s linear infinite;"></div>
+        <p style="margin-top: 1rem; color: #6b7280; font-family: system-ui, sans-serif;">Loading TrustKey...</p>
+      </div>
+    </div>
+    
+    <style>
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+    </style>
+    
+    <div id="root"></div>
+    
+    <!-- Error boundary fallback -->
+    <div id="error-boundary" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #f9fafb; z-index: 9999;">
+      <div style="display: flex; align-items: center; justify-content: center; height: 100%; flex-direction: column; padding: 2rem;">
+        <h1 style="color: #dc2626; font-family: system-ui, sans-serif; margin-bottom: 1rem;">Something went wrong</h1>
+        <p style="color: #6b7280; font-family: system-ui, sans-serif; text-align: center; margin-bottom: 2rem;">
+          We're sorry, but something unexpected happened. Please refresh the page to try again.
+        </p>
+        <button onclick="window.location.reload()" style="background: #3b82f6; color: white; border: none; padding: 0.75rem 1.5rem; border-radius: 0.5rem; font-family: system-ui, sans-serif; cursor: pointer;">
+          Refresh Page
+        </button>
+      </div>
+    </div>
+    
+    <script>
+      // Show loading fallback if React doesn't load within 5 seconds
+      setTimeout(function() {
+        const root = document.getElementById('root');
+        const loadingFallback = document.getElementById('loading-fallback');
+        if (root && root.children.length === 0) {
+          loadingFallback.style.display = 'block';
+        }
+      }, 5000);
+      
+      // Global error handler
+      window.addEventListener('error', function(event) {
+        console.error('Global error:', event.error);
+        const errorBoundary = document.getElementById('error-boundary');
+        if (errorBoundary) {
+          errorBoundary.style.display = 'block';
+        }
+      });
+      
+      // Unhandled promise rejection handler
+      window.addEventListener('unhandledrejection', function(event) {
+        console.error('Unhandled promise rejection:', event.reason);
+        const errorBoundary = document.getElementById('error-boundary');
+        if (errorBoundary) {
+          errorBoundary.style.display = 'block';
+        }
+      });
+    </script>
+  </body>
+</html>
